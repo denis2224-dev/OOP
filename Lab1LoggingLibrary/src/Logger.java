@@ -53,6 +53,8 @@ public class Logger {
     private String formatMessage(LogLevel messageLevel, String message) {
         String template = format;
         String time = LocalTime.now().format(TIME_FORMAT);
+        String randomPhrase = null;
+
         StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < template.length(); i++) {
@@ -77,6 +79,13 @@ public class Logger {
                     break;
                 case 'm':
                     result.append(message);
+                    break;
+                case 'r':
+                    if (randomPhrase == null) {
+                        randomPhrase = messageLevel.randomPhrase();
+                    }
+
+                    result.append(randomPhrase);
                     break;
                 default:
                     result.append('%').append(placeholder);
