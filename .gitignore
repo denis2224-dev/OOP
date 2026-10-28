@@ -1,2 +1,5 @@
 **/out/
 *.class
+*.pdf
+!Lab1LoggingLibrary/report/lab1-logging-report.pdf
+.DS_Store
