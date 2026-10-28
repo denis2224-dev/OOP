@@ -34,6 +34,22 @@ public class Logger {
         System.out.println(formatMessage(messageLevel, message));
     }
 
+    public void trace(String message) {
+        log(LogLevel.TRACE, message);
+    }
+
+    public void info(String message) {
+        log(LogLevel.INFO, message);
+    }
+
+    public void warn(String message) {
+        log(LogLevel.WARN, message);
+    }
+
+    public void error(String message) {
+        log(LogLevel.ERROR, message);
+    }
+
     private String formatMessage(LogLevel messageLevel, String message) {
         String template = format;
         String time = LocalTime.now().format(TIME_FORMAT);
