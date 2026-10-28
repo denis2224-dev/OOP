@@ -1,7 +1,7 @@
 public class Main {
     public static void main(String[] args) {
         Logger.setLevel(LogLevel.TRACE);
-        Logger.setFormat("[%l] %n: %m");
+        Logger.setFormat("[%l] %n: %m | %r");
 
         ParenthesesValidator validator = new ParenthesesValidator();
 
