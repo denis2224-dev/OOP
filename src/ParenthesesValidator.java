@@ -1,5 +1,15 @@
+import java.util.Objects;
+
 public class ParenthesesValidator {
-    private final Logger logger = new Logger("Parentheses");
+    private final Logger logger;
+
+    public ParenthesesValidator() {
+        this(new Logger("Parentheses"));
+    }
+
+    public ParenthesesValidator(Logger logger) {
+        this.logger = Objects.requireNonNull(logger, "Logger cannot be null");
+    }
 
     public boolean isValid(String input) {
         if (input == null) {

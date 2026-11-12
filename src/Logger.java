@@ -1,13 +1,20 @@
 import java.util.Objects;
 
 public class Logger {
-    private final String name;
-    private final Formatter formatter = new Formatter();
-
     private static LogLevel level = LogLevel.INFO;
 
+    private final String name;
+    private final Formatter formatter;
+    private final ConsoleSink sink;
+
     public Logger(String name) {
+        this(name, new Formatter(), new ConsoleSink());
+    }
+
+    public Logger(String name, Formatter formatter, ConsoleSink sink) {
         this.name = Objects.requireNonNull(name, "Logger name cannot be null");
+        this.formatter = Objects.requireNonNull(formatter, "Formatter cannot be null");
+        this.sink = Objects.requireNonNull(sink, "Sink cannot be null");
     }
 
     public static void setLevel(LogLevel newLevel) {
@@ -26,7 +33,8 @@ public class Logger {
             return;
         }
 
-        System.out.println(formatter.format(messageLevel, name, message));
+        String line = formatter.format(messageLevel, name, message);
+        sink.write(line);
     }
 
     public void trace(String message) {
